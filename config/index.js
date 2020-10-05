@@ -46,8 +46,10 @@ var config = convict({
 });
 
 // Load environment dependent configuration
-var env = config.get("env");
-config.loadFile(__dirname + "/environments/" + env + ".json");
+let env = config.get("env");
+if (env === "development") {
+  config.loadFile(__dirname + "/environments/" + env + ".json");
+}
 
 // Perform validation
 config.validate({ allowed: "strict" });

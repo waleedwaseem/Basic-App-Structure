@@ -51,6 +51,7 @@ npm run stop
 
 ## Config
 
+- For development, define required variables in development.json
 - For production, define required variables as environment variable in remote setup.
 
 ## Create Migration
@@ -70,8 +71,6 @@ npm run db:migrate
 ```
 npm run db:migrate:undo
 ```
-
-- For production, define required variables as environment variable in remote setup.
 
 ## Contributing
 
