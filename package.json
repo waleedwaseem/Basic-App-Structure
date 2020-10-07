@@ -15,13 +15,8 @@
     "db:migrate:create": "npx sequelize migration:generate --name",
     "db:migrate:undo": "npx sequelize db:migrate:undo"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/TherappyApp/Therappy-api.git"
-  },
   "author": "",
   "license": "ISC",
-  "homepage": "https://github.com/TherappyApp/Therappy-api#readme",
   "dependencies": {
     "bunyan": "^1.8.12",
     "cors": "^2.8.5",
