@@ -43,6 +43,46 @@ var config = convict({
       default: null,
     },
   },
+  auth0_primary: {
+    clientId: {
+      doc: "Auth0 primary application clientID",
+      format: String,
+      default: null,
+      env: "AUTH0_CLIENT_ID",
+    },
+    clientSecret: {
+      doc: "Auth0 primary application Secret",
+      format: String,
+      default: null,
+      env: "AUTH0_CLIENT_SECRET",
+    },
+    domain: {
+      doc: "Auth0 application Domain name",
+      format: String,
+      default: null,
+      env: "AUTH0_DOMAIN",
+    },
+    connection: {
+      doc: "Auth0 connection/realm identifier",
+      format: String,
+      default: null,
+      env: "AUTH0_CONNECTION",
+    },
+  },
+  auth0_secondary: {
+    clientId: {
+      doc: "Auth0 secondary application clientID",
+      format: String,
+      default: null,
+      env: "AUTH0_CLIENT_ID_SECONDARY",
+    },
+    clientSecret: {
+      doc: "Auth0 secondary application Secret",
+      format: String,
+      default: null,
+      env: "AUTH0_CLIENT_SECRET_SECONDARY",
+    },
+  },
 });
 
 // Load environment dependent configuration
