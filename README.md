@@ -54,6 +54,11 @@ npm run stop
 - For development, define required variables in development.json
 - For production, define required variables as environment variable in remote setup.
 
+## Database
+
+- If using mySQL for the project, use the following command to `install brew install mysql@5.7`
+- You can start mysql services by `brew services start mysql`
+
 ## Create Migration
 
 ```
