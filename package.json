@@ -8,7 +8,7 @@
     "start-server": "./node_modules/pm2/bin/pm2 start server.js",
     "stop-server": "./node_modules/pm2/bin/pm2 stop server.js",
     "logs": "./node_modules/pm2/bin/pm2 logs",
-    "test": "mocha test",
+    "test": "mocha test --timeout 10000",
     "coverage": "nyc --reporter=html npm run test",
     "lint": "npx eslint .",
     "prettier": "npx prettier -c .",
@@ -20,6 +20,7 @@
   "license": "ISC",
   "dependencies": {
     "auth0": "^2.30.0",
+    "axios": "^0.21.4",
     "bunyan": "^1.8.12",
     "convict": "^5.2.0",
     "cors": "^2.8.5",
