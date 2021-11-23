@@ -8,7 +8,7 @@
     "start-server": "./node_modules/pm2/bin/pm2 start server.js",
     "stop-server": "./node_modules/pm2/bin/pm2 stop server.js",
     "logs": "./node_modules/pm2/bin/pm2 logs",
-    "test": "mocha test",
+    "test": "cross-env NODE_ENV=test mocha test",
     "lint": "npx eslint .",
     "prettier": "npx prettier -c .",
     "db:migrate": "npx sequelize db:migrate",
@@ -33,6 +33,7 @@
   },
   "devDependencies": {
     "chai": "^4.3.4",
+    "cross-env": "^7.0.3",
     "eslint": "^6.8.0",
     "eslint-config-prettier": "^6.11.0",
     "husky": "^4.2.5",
