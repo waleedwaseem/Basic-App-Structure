@@ -20,10 +20,15 @@ const umzug = new Umzug({
   },
 });
 
-// async function migrate() {
-//   return await umzug.up();
-// }
+async function migrate() {
+  return await umzug.up();
+}
 
-// async function revert() {
-//   return await umzug.down({ to: 0 });
-// }
+async function revert() {
+  return await umzug.down({ to: 0 });
+}
+
+module.exports = {
+  migrate,
+  revert,
+};
