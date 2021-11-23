@@ -1,7 +1,7 @@
 const Umzug = require("umzug");
 const path = require("path");
 const Sequelize = require("sequelize");
-const { sequelize } = require("../models");
+const { sequelize } = require(path.join(process.cwd(), "models/"));
 
 const umzug = new Umzug({
   migrations: {
