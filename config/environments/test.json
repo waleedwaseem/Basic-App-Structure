@@ -3,7 +3,7 @@
   "db": {
     "username": "root",
     "password": null,
-    "name": "name",
+    "name": "productbox_test",
     "host": "127.0.0.1"
   },
   "auth0_primary": {

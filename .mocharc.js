@@ -4,8 +4,8 @@ const path = require("path");
 const pathToHooks = path.join(process.cwd(), "test", "hook.js");
 
 module.exports = {
-  spec: "test/**/*.test.js",
-  //   require: "test/hooks.js",
+  // spec: "test/**/*.test.js",
+  require: pathToHooks,
   file: [pathToHooks],
   recursive: true,
   reporter: "spec",
