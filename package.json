@@ -8,7 +8,7 @@
     "start-server": "./node_modules/pm2/bin/pm2 start server.js",
     "stop-server": "./node_modules/pm2/bin/pm2 stop server.js",
     "logs": "./node_modules/pm2/bin/pm2 logs",
-    "test": "mocha --recursive --reporter spec",
+    "test": "mocha test",
     "lint": "npx eslint .",
     "prettier": "npx prettier -c .",
     "db:migrate": "npx sequelize db:migrate",

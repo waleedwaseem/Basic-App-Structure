@@ -1,6 +1,17 @@
 "use strict";
 
+const path = require("path");
+const pathToHooks = path.join(process.cwd(), "test", "hook.js");
+
 module.exports = {
-  //   spec: "test/**/*.test.js",
+  spec: "test/**/*.test.js",
   //   require: "test/hooks.js",
+  file: [pathToHooks],
+  recursive: true,
+  reporter: "spec",
+  parallel: false,
+  ignore: ["/path/to/some/ignored/file"],
+  extension: ["js", "cjs", "mjs"],
+  color: true,
+  diff: true,
 };
