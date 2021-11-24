@@ -6,6 +6,7 @@
     "start": "node server.js | ./node_modules/.bin/bunyan",
     "server": "nodemon server.js | ./node_modules/.bin/bunyan",
     "start-server": "./node_modules/pm2/bin/pm2 start server.js",
+    "start-test": "cross-env NODE_ENV=test nodemon server.js | ./node_modules/.bin/bunyan",
     "stop-server": "./node_modules/pm2/bin/pm2 stop server.js",
     "logs": "./node_modules/pm2/bin/pm2 logs",
     "test": "cross-env NODE_ENV=test mocha test",
