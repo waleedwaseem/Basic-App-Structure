@@ -1,16 +1,14 @@
 const { migrate, revert } = require("./migration-runner");
 
 exports.mochaHooks = {
-  beforeAll: function (done) {
+  beforeAll: async function () {
     // do something before all test once
     console.log("running migrations...");
-    migrate();
-    done();
+    await migrate();
   },
-  afterAll: function (done) {
+  afterAll: async function () {
     // do something before all test once
     console.log("reverting migrations...");
-    revert();
-    done();
+    await revert();
   },
 };
