@@ -3,6 +3,8 @@ const path = require("path");
 const pathToUtilsIndex = path.join(process.cwd(), "utils", "index.js");
 const isEmailValid = require(pathToUtilsIndex).isEmailValid;
 
+// const { serverRequester } = require("../setup/hook");
+
 describe("test connstants", function () {
   it("isEmailValid should return true", function () {
     expect(isEmailValid("email@email.com")).to.be.true;
