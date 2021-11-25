@@ -41,4 +41,25 @@ describe("foo Controller", function () {
       expect(await Foo.findByPk(user_id)).to.be.null;
     });
   });
+
+  describe("update a Foo", function () {
+    const NameBefore = "Name Before";
+    const NameAfter = "Name After";
+    let user_id;
+    before(async function () {
+      const createdUser = await Foo.create({ firstName: NameBefore });
+      user_id = createdUser.id;
+    });
+
+    it.only("should update single Foo's firstName", async function () {
+      const response = await chai
+        .request("http://localhost:4000")
+        .patch("/api/foos/" + user_id)
+        .send({ firstName: NameAfter });
+      expect(response).to.have.status(200);
+      expect(await Foo.findByPk(user_id))
+        .to.have.property("firstName")
+        .equal(NameAfter);
+    });
+  });
 });
