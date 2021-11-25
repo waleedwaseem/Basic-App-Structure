@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "A basic nodejs structure",
   "scripts": {
-    "start": "node server.js | ./node_modules/.bin/bunyan",
+    "start": "cross-env NODE_ENV=development node server.js | ./node_modules/.bin/bunyan",
     "server": "nodemon server.js | ./node_modules/.bin/bunyan",
     "start-server": "./node_modules/pm2/bin/pm2 start server.js",
     "start-test": "cross-env NODE_ENV=test nodemon server.js | ./node_modules/.bin/bunyan",
