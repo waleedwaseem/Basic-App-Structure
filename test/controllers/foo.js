@@ -24,4 +24,21 @@ describe("foo Controller", function () {
       expect(response).to.have.status(400);
     });
   });
+
+  describe("remove a Foo", function () {
+    let user_id;
+
+    before(async function () {
+      const createdUser = await Foo.create({ firstName: "Temp User" });
+      user_id = createdUser.id;
+    });
+
+    it("should remove user from db", async function () {
+      const response = await chai
+        .request("http://localhost:4000")
+        .delete("/api/foos/" + user_id);
+      expect(response).to.have.status(200);
+      expect(await Foo.findByPk(user_id)).to.be.null;
+    });
+  });
 });
