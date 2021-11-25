@@ -40,9 +40,6 @@ module.exports = {
       const { user_id } = req.params;
       const { firstName } = req.body;
 
-      console.log("user_id: ", user_id);
-      console.log("firstName: ", firstName);
-
       await Foo.update(
         {
           firstName: firstName,
