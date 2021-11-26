@@ -10,7 +10,7 @@
     "stop-server": "./node_modules/pm2/bin/pm2 stop server.js",
     "logs": "./node_modules/pm2/bin/pm2 logs",
     "test": "cross-env NODE_ENV=test mocha test",
-    "test-coverage": "nyc --reporter=html --reporter=text npm run test",
+    "test-coverage": "nyc npm run test",
     "lint": "npx eslint .",
     "prettier": "npx prettier -c .",
     "db:migrate": "npx sequelize db:migrate",
