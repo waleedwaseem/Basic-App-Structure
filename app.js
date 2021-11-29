@@ -39,7 +39,7 @@ app.use(
 app.use(cors()); // will configure later
 
 // routes
-app.use("/", router);
+app.use("/api", router);
 
 // catch 404 later
 // app.use((req, res, next) => next("Not Found"));

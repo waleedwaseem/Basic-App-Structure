@@ -87,7 +87,7 @@ var config = convict({
 
 // Load environment dependent configuration
 let env = config.get("env");
-if (env === "development") {
+if (env) {
   config.loadFile(__dirname + "/environments/" + env + ".json");
 }
 
