@@ -1,7 +1,7 @@
 const chai = require("chai");
 const chaiHttp = require("chai-http");
 
-const { migrate } = require("./migration-runner");
+const { migrate, revert } = require("./migration-runner");
 
 chai.use(chaiHttp);
 
@@ -12,8 +12,8 @@ exports.mochaHooks = {
     await migrate();
   },
   afterAll: async function () {
-    // do something before all test once
-    // console.log("reverting migrations...");
-    // await revert();
+    // do something after all test once
+    console.log("reverting migrations...");
+    await revert();
   },
 };
