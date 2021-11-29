@@ -6,7 +6,7 @@
     "start": "NODE_ENV=development node server.js | ./node_modules/.bin/bunyan",
     "server": "nodemon server.js | ./node_modules/.bin/bunyan",
     "start-server": "./node_modules/pm2/bin/pm2 start server.js",
-    "start-test": "NODE_ENV=test nodemon server.js | ./node_modules/.bin/bunyan",
+    "start-test": "./node_modules/pm2/bin/pm2 start server.js --no-daemon --watch --no-autorestart --env test",
     "stop-server": "./node_modules/pm2/bin/pm2 stop server.js",
     "logs": "./node_modules/pm2/bin/pm2 logs",
     "test": "NODE_ENV=test mocha test",
