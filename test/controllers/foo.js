@@ -1,14 +1,17 @@
 const chai = require("chai");
 const expect = require("chai").expect;
 const { Foo } = require("../../models");
-const { hostUrl, port } = require("../setup/test-server-config");
+const config = require("../../config");
+const port = config.get("port");
+const host = "127.0.0.1";
+const hostUrl = `${host}:${port}`;
 
 describe("foo Controller", function () {
   describe("create Foo", function () {
     it("should create a Foo in db", async function () {
       let myName = "Muhammad Uzair";
       let response = await chai
-        .request(`${hostUrl}:${port}`)
+        .request(hostUrl)
         .post("/api/foos/signup")
         .send({ firstName: myName });
       expect(response).to.have.status(200);
@@ -19,7 +22,7 @@ describe("foo Controller", function () {
 
     it("shouldn't create a Foo in db", async function () {
       const response = await chai
-        .request("http://localhost:4000")
+        .request(hostUrl)
         .post("/api/foos/signup")
         .send({});
       expect(response).to.have.status(400);
@@ -36,7 +39,7 @@ describe("foo Controller", function () {
 
     it("should remove user from db", async function () {
       const response = await chai
-        .request("http://localhost:4000")
+        .request(hostUrl)
         .delete("/api/foos/" + user_id);
       expect(response).to.have.status(200);
       expect(await Foo.findByPk(user_id)).to.be.null;
@@ -54,7 +57,7 @@ describe("foo Controller", function () {
 
     it("should update single Foo's firstName", async function () {
       const response = await chai
-        .request(`${hostUrl}:${port}`)
+        .request(hostUrl)
         .patch("/api/foos/" + user_id)
         .send({ firstName: NameAfter });
       expect(response).to.have.status(200);
