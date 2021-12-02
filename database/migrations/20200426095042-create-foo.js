@@ -1,6 +1,6 @@
 "use strict";
 
-const table = "Foos";
+const table = "foos";
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
