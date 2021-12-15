@@ -3,6 +3,7 @@ global.config = require('../../config');
 const chai = require('chai');
 const chaiHttp = require('chai-http');
 const { migrate, revert } = require('./migration-runner');
+const { server } = require('../setup/testHelper');
 chai.use(chaiHttp);
 
 exports.mochaHooks = {
@@ -13,6 +14,9 @@ exports.mochaHooks = {
   },
   afterAll: async function () {
     // do something after all test once
+    console.log('closing server');
+    server.close();
+
     console.log('reverting migrations...');
     await revert();
   },
