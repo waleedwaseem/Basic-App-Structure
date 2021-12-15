@@ -9,7 +9,7 @@
     "start-test": "./node_modules/pm2/bin/pm2 start server.js --no-daemon --watch --no-autorestart --env test",
     "stop-server": "./node_modules/pm2/bin/pm2 stop server.js",
     "logs": "./node_modules/pm2/bin/pm2 logs",
-    "test": "NODE_ENV=test mocha test",
+    "test": "mocha test",
     "test-coverage": "nyc npm run test",
     "lint": "npx eslint .",
     "prettier": "npx prettier -c .",
@@ -29,7 +29,7 @@
     "express-jwt": "^6.0.0",
     "express-jwt-authz": "^2.4.1",
     "lodash": "^4.17.20",
-    "mysql2": "^2.1.0",
+    "mysql2": "^2.3.3",
     "pm2": "^4.4.0",
     "sequelize": "^5.21.7"
   },
