@@ -16,7 +16,7 @@ module.exports = {
   getUser: async (req, res) => {
     try {
       const { user_id } = req.params;
-      const user = await User.findByPk(user_id);
+      const user = await User.findOne({ where: { id: user_id } });
       if (!user) return res.status(404).json({ user: "User not found" });
       return res.status(200).json({ user: user });
     } catch (err) {
@@ -69,7 +69,7 @@ module.exports = {
       const { name, password, email } = req.body;
       if (!isEmailValid(email))
         return res.status(400).json({ message: "email is not valid" });
-      const user = await findOne({ where: { email: email } });
+      const user = await User.findOne({ where: { email: email } });
       if (user)
         return res.status(400).json({ message: "email already exsits" });
 
