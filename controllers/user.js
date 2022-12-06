@@ -1,92 +1,112 @@
 const { User } = require("../models");
-const { isEmailValid } = require("../utils");
-
+const ApiError = require("../utils/ApiError");
 module.exports = {
-  getUsers: async (req, res) => {
+  getAll: async (req, res, next) => {
     try {
-      const users = await User.findAll();
-      if (users.length < 1)
-        return res.status(404).json({ users: "Users not found" });
-
-      return res.status(200).json({ users: users });
+      const users = await User.findAll({ where: { archive: false } });
+      if (!users.length) throw new ApiError(404, "User not found");
+      res.send({
+        code: 200,
+        success: true,
+        message: "Users list",
+        data: users,
+      });
     } catch (err) {
-      return res.status(400).json({ message: err.message });
+      next(err);
     }
   },
-  getUser: async (req, res) => {
+  getOne: async (req, res, next) => {
     try {
-      const { user_id } = req.params;
-      const user = await User.findOne({ where: { id: user_id } });
-      if (!user) return res.status(404).json({ user: "User not found" });
-      return res.status(200).json({ user: user });
+      const { id } = req.params;
+      const user = await User.findOne({
+        where: {
+          id,
+          archive: false,
+        },
+      });
+      if (!user) {
+        throw new ApiError(404, "User not found");
+      }
+      res.send({
+        code: 200,
+        success: true,
+        message: "User data",
+        data: user,
+      });
     } catch (err) {
-      return res.status(400).json({ message: err.message });
+      next(err);
     }
   },
 
-  create: async (req, res) => {
+  create: async (req, res, next) => {
     try {
       const { name, email, password } = req.body;
       if (!name || !email || !password) {
-        return res.status(400).json({ message: "some data is missing" });
+        throw new ApiError(400, "Some data is missing");
       }
-      if (!isEmailValid(email))
-        return res.status(400).json({ message: "email is not valid" });
-
-      const user = await User.findOne({ where: { email: email } });
-      if (user)
-        return res
-          .status(400)
-          .json({ message: `${user.email} already exsits` });
       const createdUser = await User.create({
         email,
         password,
         name,
       });
-      return res
-        .status(200)
-        .json({ id: createdUser.id, message: "User created successfully" });
+      res.send({
+        code: 200,
+        success: true,
+        message: "User Created Succcessfully",
+        data: createdUser.email,
+      });
     } catch (err) {
-      return res.status(400).json({ message: err.message });
+      next(err);
     }
   },
 
-  remove: async (req, res) => {
+  archive: async (req, res, next) => {
     try {
-      const { user_id } = req.params;
+      const { id } = req.params;
 
-      const user = await User.destroy({ where: { id: user_id } });
-      if (!user) return res.status(404).json({ user: "User not found" });
-      return res.status(200).json({ message: "User removed successfully!" });
+      const user = await User.update(
+        {
+          archive: true,
+        },
+        {
+          where: { id },
+        }
+      );
+      if (!user[0]) throw new ApiError(404, "User not found");
+      res.send({
+        code: 200,
+        success: true,
+        message: "User Removed",
+        data: user.email,
+      });
     } catch (err) {
-      return res.status(400).json({ message: err.message });
+      next(err);
     }
   },
 
-  update: async (req, res) => {
+  update: async (req, res, next) => {
     try {
-      const { user_id } = req.params;
+      const { id } = req.params;
       const { name, password, email } = req.body;
-      if (!isEmailValid(email))
-        return res.status(400).json({ message: "email is not valid" });
-      const user = await User.findOne({ where: { email: email } });
-      if (user)
-        return res.status(400).json({ message: "email already exsits" });
-
-      await User.update(
+      const user = await User.update(
         {
           name,
           email,
           password,
         },
         {
-          where: { id: user_id },
+          where: { id },
         }
       );
-
-      return res.status(200).json({ message: "User updated successfully" });
+      if (!user[0]) throw new ApiError(404, "User not found");
+      res.send({
+        code: 200,
+        success: true,
+        message: "User Updated Successfully",
+        data: user.email,
+      });
     } catch (err) {
-      return res.status(400).json({ message: err.message });
+      next(err);
     }
   },
 };
