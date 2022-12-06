@@ -104,3 +104,8 @@ dist
 
 # TernJS port file
 .tern-port
+
+# development.josn file 
+.config/environments/development.josn
+
+
