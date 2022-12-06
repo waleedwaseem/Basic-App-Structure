@@ -2,7 +2,7 @@
   "port": 4000,
   "db": {
     "username": "root",
-    "password": "12345678",
+    "password": null,
     "name": "productbox",
     "host": "127.0.0.1"
   },

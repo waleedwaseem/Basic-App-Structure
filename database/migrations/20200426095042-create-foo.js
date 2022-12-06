@@ -1,6 +1,6 @@
 "use strict";
 
-const table = "Users";
+const table = "Foos";
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
@@ -11,17 +11,8 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      email: {
-        allowNull: false,
+      firstName: {
         type: Sequelize.STRING,
-      },
-      password: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      name: {
-        type: Sequelize.STRING,
-        allowNull: false,
       },
       createdAt: {
         allowNull: false,
