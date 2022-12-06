@@ -106,6 +106,6 @@ dist
 .tern-port
 
 # development.josn file 
-.config/environments/development.josn
+.config/environments/development.json
 
 
