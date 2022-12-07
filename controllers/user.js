@@ -1,5 +1,6 @@
 const { User } = require("../models");
 const ApiError = require("../utils/ApiError");
+const bcrypt = require("bcrypt");
 module.exports = {
   getAll: async (req, res, next) => {
     try {
@@ -37,16 +38,40 @@ module.exports = {
       next(err);
     }
   },
-
+  signIn: async (req, res, next) => {
+    try {
+      const { email, password } = req.body;
+      if (!email || !password) {
+        throw new ApiError(400, "Some data is missing");
+      }
+      const user = await User.findOne({
+        where: { email: email, archive: false },
+      });
+      if (!user) throw new ApiError(400, "Email or Password is Incorrect");
+      const verifyPassword = await bcrypt.compare(password, user.password);
+      if (!verifyPassword)
+        throw new ApiError(400, "Email or Password is Incorrect");
+      res.send({
+        code: 200,
+        success: true,
+        message: "User Signed In SuccessFully",
+        data: user.email,
+      });
+    } catch (err) {
+      next(err);
+    }
+  },
   create: async (req, res, next) => {
     try {
       const { name, email, password } = req.body;
       if (!name || !email || !password) {
         throw new ApiError(400, "Some data is missing");
       }
+      const genSalt = await bcrypt.genSalt(10);
+      const hashedPassword = await bcrypt.hash(password, genSalt);
       const createdUser = await User.create({
         email,
-        password,
+        password: hashedPassword,
         name,
       });
       res.send({
