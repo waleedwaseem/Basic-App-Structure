@@ -3,7 +3,6 @@ const { db } = require("../config/environments/firebase.js");
 const { collection, getDocs } = require("firebase/firestore");
 module.exports = {
   getAll: async (req, res, next) => {
-    console.log(">>>>>>", db);
     try {
       const users = collection(db, "users");
       const userDocs = await getDocs(users);
