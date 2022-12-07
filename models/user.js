@@ -32,9 +32,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     {}
   );
-  User.associate = function (models) {
-    console.log("🚀 ~ file: user.js:37 ~ models", models);
-  };
+
   User.beforeCreate(async (user, options) => {
     if (!isEmailValid(user.email)) throw new Error();
     if (!user.archive) user.archive = false;
