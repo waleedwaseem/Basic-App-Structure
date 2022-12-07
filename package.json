@@ -21,6 +21,7 @@
   "license": "ISC",
   "dependencies": {
     "auth0": "^2.30.0",
+    "bcrypt": "^5.1.0",
     "bunyan": "^1.8.12",
     "convict": "^5.2.0",
     "cors": "^2.8.5",
