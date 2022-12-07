@@ -13,6 +13,7 @@ module.exports = {
       },
       email: {
         allowNull: false,
+        unique: true,
         type: Sequelize.STRING,
       },
       password: {
@@ -22,6 +23,10 @@ module.exports = {
       name: {
         type: Sequelize.STRING,
         allowNull: false,
+      },
+      archive: {
+        type: Sequelize.BOOLEAN,
+        allowNull: true,
       },
       createdAt: {
         allowNull: false,
