@@ -3,7 +3,7 @@
   "db": {
     "username": "root",
     "password": null,
-    "name": "productbox",
+    "name": "hfp-node",
     "host": "127.0.0.1"
   },
   "auth0_primary": {
